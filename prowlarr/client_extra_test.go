@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/parsoFish/healarr/internal/clients/httpx"
+	"github.com/parsoFish/arrkit/httpx"
 )
 
 // These tests supplement the brief's verbatim client_test.go to reach the

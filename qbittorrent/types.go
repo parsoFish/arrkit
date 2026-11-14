@@ -40,7 +40,7 @@ type File struct {
 	Priority int     `json:"priority"`
 }
 
-// Preferences is the subset of /api/v2/app/preferences healarr cares about.
+// Preferences is the subset of /api/v2/app/preferences arrkit exposes.
 // Its fields carry camelCase json tags for --json output; qBittorrent's own
 // wire format uses snake_case, so decoding goes through rawPreferences (see
 // client.go) instead of these tags.
@@ -53,7 +53,7 @@ type Preferences struct {
 	ExcludedFileNames string  `json:"excludedFileNames"`
 }
 
-// Client is the behaviour the rest of healarr depends on.
+// Client is the behaviour callers depend on.
 type Client interface {
 	// Version fetches /api/v2/app/version; it doubles as a liveness+auth check.
 	Version(ctx context.Context) (string, error)

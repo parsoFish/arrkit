@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/parsoFish/healarr/internal/clients/httpx"
+	"github.com/parsoFish/arrkit/httpx"
 )
 
 const apiBase = "/api/v2"

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/parsoFish/healarr/internal/clients/httpx"
+	"github.com/parsoFish/arrkit/httpx"
 )
 
 const apiBase = "/api/v1"
@@ -73,7 +73,7 @@ func (c *HTTPClient) DeleteIndexer(ctx context.Context, id int64) error {
 
 // TestIndexer fetches the indexer's full definition and POSTs it back to the
 // test endpoint. Prowlarr requires the complete object (including its
-// implementation-specific fields, which healarr never inspects) rather than
+// implementation-specific fields, which arrkit never inspects) rather than
 // just the id, so the fetched map is forwarded unmodified.
 func (c *HTTPClient) TestIndexer(ctx context.Context, id int64) error {
 	var def map[string]any

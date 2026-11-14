@@ -57,7 +57,7 @@ type HistoryRecord struct {
 	DownloadID  string    `json:"downloadId"`
 }
 
-// Client is the behaviour the rest of healarr depends on.
+// Client is the behaviour callers depend on.
 type Client interface {
 	Health(ctx context.Context) ([]HealthItem, error)
 	Queue(ctx context.Context) ([]QueueItem, error)

@@ -32,7 +32,7 @@ type Item struct {
 	LibraryKey string    `json:"libraryKey"`
 }
 
-// Client is the behaviour the rest of healarr depends on.
+// Client is the behaviour callers depend on.
 type Client interface {
 	Identity(ctx context.Context) (Identity, error)
 	Libraries(ctx context.Context) ([]Library, error)

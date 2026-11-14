@@ -22,7 +22,7 @@ type HistoryRow struct {
 	PercentComplete      int       `json:"percentComplete"`
 }
 
-// Client is the behaviour the rest of healarr depends on.
+// Client is the behaviour callers depend on.
 type Client interface {
 	Ping(ctx context.Context) error
 	History(ctx context.Context, since time.Time, length int) ([]HistoryRow, error)

@@ -39,7 +39,7 @@ func (n *nullTime) UnmarshalJSON(data []byte) error {
 	return n.Time.UnmarshalJSON(data)
 }
 
-// Client is the behaviour the rest of healarr depends on.
+// Client is the behaviour callers depend on.
 type Client interface {
 	Health(ctx context.Context) ([]HealthItem, error)
 	Indexers(ctx context.Context) ([]Indexer, error)

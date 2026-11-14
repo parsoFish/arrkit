@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/parsoFish/healarr/internal/clients/httpx"
+	"github.com/parsoFish/arrkit/httpx"
 )
 
 // These tests supplement client_test.go to reach the project's 80% coverage

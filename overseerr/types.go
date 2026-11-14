@@ -25,7 +25,7 @@ type Request struct {
 	UpdatedAt   time.Time `json:"updatedAt"`
 }
 
-// Client is the behaviour the rest of healarr depends on.
+// Client is the behaviour callers depend on.
 type Client interface {
 	Status(ctx context.Context) (Status, error)
 	Requests(ctx context.Context, filter string) ([]Request, error)
