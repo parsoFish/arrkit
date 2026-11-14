@@ -30,7 +30,8 @@ HITS=0
 # in the fixtures, except matches that also match the extended regex ALLOW.
 rule() {
   local name="$1" pattern="$2" allow="${3:-}" out rc=0 line match
-  out="$(grep -HnoE -e "$pattern" -- "${FILES[@]}")" || rc=$?
+  # -a: a NUL byte must not turn a file into "binary file matches" and hide hits.
+  out="$(grep -aHnoE -e "$pattern" -- "${FILES[@]}")" || rc=$?
   if [ "$rc" -gt 1 ]; then
     echo "scan-fixtures: grep failed for rule $name (exit $rc)" >&2
     exit 2

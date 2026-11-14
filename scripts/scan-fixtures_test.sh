@@ -41,6 +41,11 @@ HEX32="$(printf 'cd%.0s' {1..16})"
 
 check clean 0 "1 fixture files clean" "$(fixture clean '{"downloadId": "0000000000000000000000000000000000000001", "ip": "10.0.0.2", "email": "user1@example.com", "title": "Example.Show.S01E01.1080p-GROUP", "path": "/tv/Example Show/Season 01", "root": "/movies/#recycle"}')"
 check infohash 1 "infohash: " "$(fixture infohash "{\"downloadId\": \"$HEX40\"}")"
+# A NUL byte makes GNU grep treat the file as binary; the hit must still be
+# reported. A bash variable cannot hold NUL, so write the file directly.
+mkdir -p "$WORK/nul/pkg/testdata"
+printf '{"h":"%s"}\0\n' "$HEX40" >"$WORK/nul/pkg/testdata/f.json"
+check nul-bearing 1 "infohash: " "$WORK/nul"
 check hex32 1 "hex32: " "$(fixture hex32 "{\"apiKey\": \"$HEX32\"}")"
 check private-ip 1 "private-ip: " "$(fixture private-ip '{"host": "192.168.1.20"}')"
 check email 1 "email: " "$(fixture email '{"email": "someone@mail.invalid"}')"
