@@ -102,7 +102,7 @@ That covers the `URL` field and message of `*httpx.APIError`, and transport erro
 
 Still visible in errors: the username in userinfo when there is no password, query parameter names, the URL path, and the fragment. Keep secrets out of those.
 
-Not redacted: the body of a failed request without a query string (`APIError.Body`; the message shows its first 200 bytes) and the first 200 bytes of a response that fails to decode. Header values, including `X-Api-Key`, `X-Plex-Token` and the qBittorrent session cookie, are never put in an error.
+Not redacted: the response body of a failed request without a query string (`APIError.Body`; the message shows its first 200 bytes) and the first 200 bytes of a response that fails to decode. Header values, including `X-Api-Key`, `X-Plex-Token` and the qBittorrent session cookie, are never put in an error.
 
 ## Working across repositories
 
