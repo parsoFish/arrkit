@@ -85,7 +85,7 @@ func TestRequestsDecodesFieldsFromFixture(t *testing.T) {
 	if r0.ID != 122 || r0.Status != 2 || r0.MediaType != "tv" {
 		t.Fatalf("unexpected request: %+v", r0)
 	}
-	if r0.TMDBID != 2316 || r0.TVDBID != 73244 || r0.MediaStatus != 3 {
+	if r0.TMDBID != 900014 || r0.TVDBID != 900024 || r0.MediaStatus != 3 {
 		t.Fatalf("unexpected media fields: %+v", r0)
 	}
 	if r0.RequestedBy != "user2@example.com" {

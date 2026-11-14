@@ -25,9 +25,9 @@ func TestQueueFlattensMessagesFromRecord(t *testing.T) {
 	const body = `{
 		"totalRecords": 1,
 		"records": [{
-			"id": 42, "movieId": 7, "title": "Inside Out 2", "status": "downloading",
+			"id": 42, "movieId": 7, "title": "Example Movie G", "status": "downloading",
 			"trackedDownloadStatus": "ok", "trackedDownloadState": "downloading",
-			"downloadId": "abc123", "outputPath": "/downloads/inside-out-2",
+			"downloadId": "abc123", "outputPath": "/downloads/example-movie-g",
 			"size": 100.0, "sizeleft": 25.0, "added": "2026-01-01T00:00:00Z",
 			"statusMessages": [{"messages": ["m1", "m2"]}, {"messages": ["m3"]}]
 		}]

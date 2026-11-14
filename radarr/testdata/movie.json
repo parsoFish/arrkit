@@ -271,8 +271,8 @@
     "folderName": "/movies/Example Movie 1 (2024)",
     "runtime": 97,
     "cleanTitle": "examplemoviea",
-    "imdbId": "tt0000001",
-    "tmdbId": 1022789,
+    "imdbId": "tt9000001",
+    "tmdbId": 900001,
     "titleSlug": "example-movie-a",
     "rootFolderPath": "/movies",
     "certification": "PG",
@@ -336,7 +336,7 @@
     },
     "collection": {
       "title": "Example Collection A",
-      "tmdbId": 1022790
+      "tmdbId": 900007
     },
     "popularity": 34.1911,
     "lastSearchTime": "2025-01-22T11:28:45Z",
@@ -505,8 +505,8 @@
     "folderName": "/movies/Example Movie 2 (2008)",
     "runtime": 152,
     "cleanTitle": "examplemovieb",
-    "imdbId": "tt0000002",
-    "tmdbId": 155,
+    "imdbId": "tt9000002",
+    "tmdbId": 900002,
     "titleSlug": "example-movie-b",
     "rootFolderPath": "/movies",
     "certification": "PG-13",
@@ -565,7 +565,7 @@
     },
     "collection": {
       "title": "Example Collection B",
-      "tmdbId": 263
+      "tmdbId": 900008
     },
     "popularity": 53.5476,
     "lastSearchTime": "2025-03-28T06:54:51Z",
@@ -655,8 +655,8 @@
     "folderName": "/movies/Example Movie 3 (2022)",
     "runtime": 127,
     "cleanTitle": "examplemoviec",
-    "imdbId": "tt0000003",
-    "tmdbId": 597922,
+    "imdbId": "tt9000003",
+    "tmdbId": 900003,
     "titleSlug": "example-movie-c",
     "rootFolderPath": "/movies",
     "certification": "R",
