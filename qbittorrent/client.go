@@ -245,8 +245,8 @@ func (c *HTTPClient) Resume(ctx context.Context, hashes []string) error {
 }
 
 // rawPreferences mirrors /app/preferences' actual snake_case wire shape.
-// Preferences itself carries camelCase json tags for --json output, so
-// decoding goes through this private type instead.
+// Preferences itself carries camelCase json tags for callers' JSON output,
+// so decoding goes through this private type instead.
 type rawPreferences struct {
 	SavePath          string  `json:"save_path"`
 	TempPath          string  `json:"temp_path"`

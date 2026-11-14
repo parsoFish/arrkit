@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// These tests supplement the brief's verbatim client_test.go to reach the
+// These tests supplement client_test.go to reach the
 // project's 80% coverage gate: message flattening on a populated queue page,
 // RootFolders, DeleteMovie, RunCommand, UpdateMovieMonitored (including the
 // copy-before-patch guarantee), the invalid-base-URL error path of New, and

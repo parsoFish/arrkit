@@ -10,7 +10,7 @@ import (
 	"github.com/parsoFish/arrkit/httpx"
 )
 
-// These tests supplement the brief's verbatim client_test.go to reach the
+// These tests supplement client_test.go to reach the
 // project's 80% coverage gate: the 403-then-relogin retry path (both the
 // success and the persistent-failure cases), Files/Preferences/
 // SetPreferences/Reannounce/Resume, query building, decode-error surfacing,

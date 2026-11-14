@@ -9,7 +9,7 @@ import (
 	"github.com/parsoFish/arrkit/httpx"
 )
 
-// These tests supplement the brief's verbatim client_test.go to reach the
+// These tests supplement client_test.go to reach the
 // project's 80% coverage gate: invalid-base-URL error path of New, the
 // unauthorized path for every real endpoint, TestIndexer's validation-error
 // surfacing as *httpx.APIError, and the Fake's remaining methods.
