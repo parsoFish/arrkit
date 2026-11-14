@@ -3,21 +3,28 @@ package tautulli
 import (
 	"context"
 	"fmt"
+	"sync"
 	"time"
 )
 
-// Fake is an in-memory Client for tests and the check engine's table tests.
+// Fake is an in-memory Client for callers' unit tests. Its methods are safe
+// for concurrent use; read Calls only after the calls under test return.
 type Fake struct {
 	HistoryRows []HistoryRow
 	Streams     int
 	Calls       []string
 	Err         error
+
+	mu sync.Mutex // guards Calls
 }
 
 var _ Client = (*Fake)(nil)
 
 func (f *Fake) record(format string, args ...any) error {
-	f.Calls = append(f.Calls, fmt.Sprintf(format, args...))
+	call := fmt.Sprintf(format, args...)
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	f.Calls = append(f.Calls, call)
 	return f.Err
 }
 

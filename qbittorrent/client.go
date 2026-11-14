@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/parsoFish/arrkit/httpx"
@@ -17,16 +18,17 @@ import (
 
 const apiBase = "/api/v2"
 
-// HTTPClient talks to a real qBittorrent WebUI.
-//
-// loggedIn is read and written from a single goroutine at a time in Phase 1
-// (one check run drives one client at a time); it is not safe for concurrent
-// use without external synchronisation.
+// HTTPClient talks to a real qBittorrent WebUI. It is safe for concurrent
+// use: logins are serialised, so concurrent callers share one session, and a
+// session that expires (403) is renewed once however many callers see it.
 type HTTPClient struct {
-	h        *httpx.Client
-	user     string
-	pass     string
+	h    *httpx.Client
+	user string
+	pass string
+
+	mu       sync.Mutex // serialises login; guards loggedIn and session
 	loggedIn bool
+	session  uint64 // bumped by every successful login
 }
 
 var _ Client = (*HTTPClient)(nil)
@@ -50,9 +52,9 @@ func New(baseURL, user, pass string, opts ...httpx.Option) (*HTTPClient, error) 
 	return &HTTPClient{h: h, user: user, pass: pass}, nil
 }
 
-// login authenticates and stores the SID cookie in the shared cookie jar. An
-// empty user and pass means the caller relies on qBittorrent's subnet
-// whitelist, so login is skipped entirely.
+// login authenticates and stores the SID cookie in the shared cookie jar.
+// The caller must hold c.mu. An empty user and pass means the caller relies
+// on qBittorrent's subnet whitelist, so login is skipped entirely.
 func (c *HTTPClient) login(ctx context.Context) error {
 	if c.user == "" && c.pass == "" {
 		return nil
@@ -66,21 +68,46 @@ func (c *HTTPClient) login(ctx context.Context) error {
 		return errors.New("qbittorrent login: invalid credentials")
 	}
 	c.loggedIn = true
+	c.session++
 	return nil
+}
+
+// ensureSession logs in unless a session already exists, and returns the
+// session generation the caller's request runs under.
+func (c *HTTPClient) ensureSession(ctx context.Context) (uint64, error) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if !c.loggedIn {
+		if err := c.login(ctx); err != nil {
+			return 0, err
+		}
+	}
+	return c.session, nil
+}
+
+// renewSession logs in again after a request made under session generation
+// `failed` got a 403. If another caller has already renewed that session, it
+// does nothing.
+func (c *HTTPClient) renewSession(ctx context.Context, failed uint64) error {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if c.loggedIn && c.session != failed {
+		return nil
+	}
+	c.loggedIn = false
+	return c.login(ctx)
 }
 
 // withAuth runs fn, logging in first if needed and once more after a 403
 // (the session expired between calls).
 func (c *HTTPClient) withAuth(ctx context.Context, fn func() error) error {
-	if !c.loggedIn {
-		if err := c.login(ctx); err != nil {
-			return err
-		}
+	session, err := c.ensureSession(ctx)
+	if err != nil {
+		return err
 	}
-	err := fn()
+	err = fn()
 	if httpx.IsStatus(err, http.StatusForbidden) {
-		c.loggedIn = false
-		if lerr := c.login(ctx); lerr != nil {
+		if lerr := c.renewSession(ctx, session); lerr != nil {
 			return lerr
 		}
 		return fn()
@@ -198,11 +225,18 @@ func (c *HTTPClient) Reannounce(ctx context.Context, hashes []string) error {
 	return nil
 }
 
-// Resume resumes the given torrents.
+// Resume resumes the given torrents. qBittorrent 5.0 (WebAPI 2.11.0) renamed
+// torrents/resume to torrents/start, and an endpoint a server does not have
+// answers 404. Resume posts to start first and falls back to resume on a 404,
+// so it works against 4.x and 5.x servers alike.
 func (c *HTTPClient) Resume(ctx context.Context, hashes []string) error {
 	form := url.Values{"hashes": {strings.Join(hashes, "|")}}
 	err := c.withAuth(ctx, func() error {
-		return c.h.PostForm(ctx, apiBase+"/torrents/resume", form, nil)
+		err := c.h.PostForm(ctx, apiBase+"/torrents/start", form, nil)
+		if httpx.IsStatus(err, http.StatusNotFound) {
+			return c.h.PostForm(ctx, apiBase+"/torrents/resume", form, nil)
+		}
+		return err
 	})
 	if err != nil {
 		return fmt.Errorf("qbittorrent resume: %w", err)
@@ -211,8 +245,8 @@ func (c *HTTPClient) Resume(ctx context.Context, hashes []string) error {
 }
 
 // rawPreferences mirrors /app/preferences' actual snake_case wire shape.
-// Preferences itself carries camelCase json tags for --json output, so
-// decoding goes through this private type instead.
+// Preferences itself carries camelCase json tags for callers' JSON output,
+// so decoding goes through this private type instead.
 type rawPreferences struct {
 	SavePath          string  `json:"save_path"`
 	TempPath          string  `json:"temp_path"`

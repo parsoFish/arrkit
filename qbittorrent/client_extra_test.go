@@ -10,7 +10,7 @@ import (
 	"github.com/parsoFish/arrkit/httpx"
 )
 
-// These tests supplement the brief's verbatim client_test.go to reach the
+// These tests supplement client_test.go to reach the
 // project's 80% coverage gate: the 403-then-relogin retry path (both the
 // success and the persistent-failure cases), Files/Preferences/
 // SetPreferences/Reannounce/Resume, query building, decode-error surfacing,
@@ -213,7 +213,7 @@ func TestFilesDecodesFixture(t *testing.T) {
 	if err != nil || len(files) != 1 {
 		t.Fatalf("Files: %+v %v", files, err)
 	}
-	if files[0].Name != "A.Knight.S01E06.720p.exe" || files[0].Priority != 1 {
+	if files[0].Name != "Example.Show.S01E06.720p.exe" || files[0].Priority != 1 {
 		t.Errorf("unexpected file: %+v", files[0])
 	}
 	req := findRequest(seen, "/api/v2/torrents/files")
@@ -278,9 +278,9 @@ func TestReannounceAndResumeJoinHashes(t *testing.T) {
 	if reannounce == nil || reannounce.FormValue("hashes") != "a|b" {
 		t.Fatalf("reannounce request: %+v", reannounce)
 	}
-	resume := findRequest(seen, "/api/v2/torrents/resume")
-	if resume == nil || resume.FormValue("hashes") != "c" {
-		t.Fatalf("resume request: %+v", resume)
+	start := findRequest(seen, "/api/v2/torrents/start")
+	if start == nil || start.FormValue("hashes") != "c" {
+		t.Fatalf("start request: %+v", start)
 	}
 }
 

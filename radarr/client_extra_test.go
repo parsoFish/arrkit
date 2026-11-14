@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// These tests supplement the brief's verbatim client_test.go to reach the
+// These tests supplement client_test.go to reach the
 // project's 80% coverage gate: message flattening on a populated queue page,
 // RootFolders, DeleteMovie, RunCommand, UpdateMovieMonitored (including the
 // copy-before-patch guarantee), the invalid-base-URL error path of New, and
@@ -25,9 +25,9 @@ func TestQueueFlattensMessagesFromRecord(t *testing.T) {
 	const body = `{
 		"totalRecords": 1,
 		"records": [{
-			"id": 42, "movieId": 7, "title": "Inside Out 2", "status": "downloading",
+			"id": 42, "movieId": 7, "title": "Example Movie G", "status": "downloading",
 			"trackedDownloadStatus": "ok", "trackedDownloadState": "downloading",
-			"downloadId": "abc123", "outputPath": "/downloads/inside-out-2",
+			"downloadId": "abc123", "outputPath": "/downloads/example-movie-g",
 			"size": 100.0, "sizeleft": 25.0, "added": "2026-01-01T00:00:00Z",
 			"statusMessages": [{"messages": ["m1", "m2"]}, {"messages": ["m3"]}]
 		}]

@@ -29,27 +29,37 @@ func (e *APIError) Error() string {
 	return fmt.Sprintf("%s %s: HTTP %d: %s", e.Method, e.URL, e.Status, truncate(e.Body, 200))
 }
 
-// redactURL returns a copy of rawURL with every query parameter value
-// replaced by "REDACTED" (parameter names are preserved). It is the single
-// choke point every error path in this package must send a request URL
-// through before it can appear in an error message, since query strings
-// routinely carry secrets (e.g. Tautulli's apikey parameter). Unparsable
-// input is returned unchanged, since it cannot contain a decodable query.
+// redactedUnparsable stands in for a URL that does not parse. Such a URL
+// cannot be redacted piece by piece, so none of it is shown.
+const redactedUnparsable = "(unparsable URL, redacted)"
+
+// redactURL returns a copy of rawURL that is safe to put in an error: every
+// query parameter value becomes "REDACTED" (names are kept) and a userinfo
+// password becomes "xxxxx" (url.URL.Redacted; the username is kept). It is
+// the single choke point every error path in this package must send a URL
+// through, since query strings routinely carry secrets (e.g. Tautulli's
+// apikey parameter) and a base URL can carry credentials. Input that does
+// not parse is replaced whole by redactedUnparsable.
 func redactURL(rawURL string) string {
 	u, err := url.Parse(rawURL)
-	if err != nil || u.RawQuery == "" {
+	if err != nil {
+		return redactedUnparsable
+	}
+	if u.RawQuery == "" && u.User == nil {
 		return rawURL
 	}
-	q := u.Query()
-	for k, vs := range q {
-		redacted := make([]string, len(vs))
-		for i := range vs {
-			redacted[i] = "REDACTED"
+	if u.RawQuery != "" {
+		q := u.Query()
+		for k, vs := range q {
+			redacted := make([]string, len(vs))
+			for i := range vs {
+				redacted[i] = "REDACTED"
+			}
+			q[k] = redacted
 		}
-		q[k] = redacted
+		u.RawQuery = q.Encode()
 	}
-	u.RawQuery = q.Encode()
-	return u.String()
+	return u.Redacted()
 }
 
 // hasQuery reports whether rawURL carries a query string. Unparsable input
@@ -145,14 +155,20 @@ func WithTLSServerName(name string) Option {
 	}
 }
 
-// New builds a client for baseURL.
+// errInvalidBaseURL is New's error for every unusable base URL. It carries
+// none of the input, and none of url.Parse's own message either, because that
+// quotes fragments of the input (a password typed into the port slot of
+// "http://nas:pw" comes back as `invalid port ":pw" after host`).
+var errInvalidBaseURL = errors.New("httpx: invalid base URL (value not shown; it may contain credentials)")
+
+// New builds a client for baseURL. Its errors do not echo baseURL, which can
+// carry credentials.
 func New(baseURL string, opts ...Option) (*Client, error) {
 	u, err := url.Parse(baseURL)
-	if err != nil {
-		return nil, fmt.Errorf("httpx: invalid base URL %q: %w", baseURL, err)
-	}
-	if u.Scheme == "" || u.Host == "" {
-		return nil, fmt.Errorf("httpx: invalid base URL %q", baseURL)
+	// A URL without a scheme or host is rejected too: "user:pass@host" parses
+	// as scheme "user" with the password in the opaque part.
+	if err != nil || u.Scheme == "" || u.Host == "" {
+		return nil, errInvalidBaseURL
 	}
 	c := &Client{base: u, headers: http.Header{}, http: &http.Client{Timeout: defaultTimeout}}
 	for _, o := range opts {

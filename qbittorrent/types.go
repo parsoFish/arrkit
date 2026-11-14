@@ -41,9 +41,9 @@ type File struct {
 }
 
 // Preferences is the subset of /api/v2/app/preferences arrkit exposes.
-// Its fields carry camelCase json tags for --json output; qBittorrent's own
-// wire format uses snake_case, so decoding goes through rawPreferences (see
-// client.go) instead of these tags.
+// Its fields carry camelCase json tags for callers' JSON output;
+// qBittorrent's own wire format uses snake_case, so decoding goes through
+// rawPreferences (see client.go) instead of these tags.
 type Preferences struct {
 	SavePath          string  `json:"savePath"`
 	TempPath          string  `json:"tempPath"`
