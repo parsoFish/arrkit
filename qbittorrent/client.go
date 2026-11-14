@@ -225,11 +225,18 @@ func (c *HTTPClient) Reannounce(ctx context.Context, hashes []string) error {
 	return nil
 }
 
-// Resume resumes the given torrents.
+// Resume resumes the given torrents. qBittorrent 5.0 (WebAPI 2.11.0) renamed
+// torrents/resume to torrents/start, and an endpoint a server does not have
+// answers 404. Resume posts to start first and falls back to resume on a 404,
+// so it works against 4.x and 5.x servers alike.
 func (c *HTTPClient) Resume(ctx context.Context, hashes []string) error {
 	form := url.Values{"hashes": {strings.Join(hashes, "|")}}
 	err := c.withAuth(ctx, func() error {
-		return c.h.PostForm(ctx, apiBase+"/torrents/resume", form, nil)
+		err := c.h.PostForm(ctx, apiBase+"/torrents/start", form, nil)
+		if httpx.IsStatus(err, http.StatusNotFound) {
+			return c.h.PostForm(ctx, apiBase+"/torrents/resume", form, nil)
+		}
+		return err
 	})
 	if err != nil {
 		return fmt.Errorf("qbittorrent resume: %w", err)

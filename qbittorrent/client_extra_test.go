@@ -278,9 +278,9 @@ func TestReannounceAndResumeJoinHashes(t *testing.T) {
 	if reannounce == nil || reannounce.FormValue("hashes") != "a|b" {
 		t.Fatalf("reannounce request: %+v", reannounce)
 	}
-	resume := findRequest(seen, "/api/v2/torrents/resume")
-	if resume == nil || resume.FormValue("hashes") != "c" {
-		t.Fatalf("resume request: %+v", resume)
+	start := findRequest(seen, "/api/v2/torrents/start")
+	if start == nil || start.FormValue("hashes") != "c" {
+		t.Fatalf("start request: %+v", start)
 	}
 }
 
