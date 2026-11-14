@@ -105,8 +105,8 @@ func TestHistorySendsAfterDateAndDecodesWatchedStatus(t *testing.T) {
 	if r0.PercentComplete != 100 {
 		t.Errorf("expected PercentComplete 100, got %d", r0.PercentComplete)
 	}
-	if r0.GrandparentTitle != "Pantheon" {
-		t.Errorf("expected GrandparentTitle Pantheon, got %q", r0.GrandparentTitle)
+	if r0.GrandparentTitle != "Example Show A" {
+		t.Errorf("expected GrandparentTitle Example Show A, got %q", r0.GrandparentTitle)
 	}
 
 	if len(seen) != 1 {

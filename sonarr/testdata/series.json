@@ -1,34 +1,34 @@
 [
   {
-    "title": "Breaking Bad",
+    "title": "Example Show C",
     "alternateTitles": [],
-    "sortTitle": "breaking bad",
+    "sortTitle": "example show c",
     "status": "ended",
     "ended": true,
-    "overview": "When Walter White, a chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of two years left to live, he chooses to enter a dangerous world of drugs and crime with the intent to secure his family's financial security.",
+    "overview": "Example overview for Example Show C.",
     "previousAiring": "2013-09-30T01:00:00Z",
-    "network": "AMC",
+    "network": "Example Network",
     "airTime": "21:00",
     "images": [
       {
         "coverType": "banner",
         "url": "/MediaCover/1/banner.jpg?lastWrite=638787394066412412",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/graphical/81189-g21.jpg"
+        "remoteUrl": "https://example.com/images/example-show-c/banner.jpg"
       },
       {
         "coverType": "poster",
         "url": "/MediaCover/1/poster.jpg?lastWrite=638787394066612415",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/posters/81189-10.jpg"
+        "remoteUrl": "https://example.com/images/example-show-c/poster.jpg"
       },
       {
         "coverType": "fanart",
         "url": "/MediaCover/1/fanart.jpg?lastWrite=638787394066732416",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/fanart/original/81189-21.jpg"
+        "remoteUrl": "https://example.com/images/example-show-c/fanart.jpg"
       },
       {
         "coverType": "clearlogo",
         "url": "/MediaCover/1/clearlogo.png?lastWrite=638787394066772417",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/v4/series/81189/clearlogo/611b4df33bac5.png"
+        "remoteUrl": "https://example.com/images/example-show-c/clearlogo.png"
       }
     ],
     "originalLanguage": {
@@ -129,9 +129,9 @@
     "firstAired": "2008-01-20T00:00:00Z",
     "lastAired": "2013-09-29T00:00:00Z",
     "seriesType": "standard",
-    "cleanTitle": "breakingbad",
-    "imdbId": "tt0903747",
-    "titleSlug": "breaking-bad",
+    "cleanTitle": "exampleshowc",
+    "imdbId": "tt0000103",
+    "titleSlug": "example-show-c",
     "rootFolderPath": "/tv",
     "certification": "TV-MA",
     "genres": [
@@ -159,35 +159,35 @@
     "id": 1
   },
   {
-    "title": "King of the Hill",
+    "title": "Example Show D",
     "alternateTitles": [],
-    "sortTitle": "king of the hill",
+    "sortTitle": "example show d",
     "status": "continuing",
     "ended": false,
-    "overview": "In the little town of Arlen, Texas, lives a man who embodies the spirit of the Lone Star State. Hank Hill tends his lawn with pride, never overcooks his steak and sells propane and propane accessories. In this animated series from Mike Judge, Hank and his wife Peggy work to raise their son Bobby, be good neighbors and uphold their middle-class Texas values amid a changing world.",
+    "overview": "Example overview for Example Show D.",
     "previousAiring": "2026-07-20T04:00:00Z",
-    "network": "Hulu",
+    "network": "Example Network",
     "airTime": "00:00",
     "images": [
       {
         "coverType": "banner",
         "url": "/MediaCover/2/banner.jpg?lastWrite=638787394067292423",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/graphical/73903-g2.jpg"
+        "remoteUrl": "https://example.com/images/example-show-d/banner.jpg"
       },
       {
         "coverType": "poster",
         "url": "/MediaCover/2/poster.jpg?lastWrite=638787394067412424",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/posters/73903-1.jpg"
+        "remoteUrl": "https://example.com/images/example-show-d/poster.jpg"
       },
       {
         "coverType": "fanart",
         "url": "/MediaCover/2/fanart.jpg?lastWrite=638787394067652427",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/fanart/original/73903-2.jpg"
+        "remoteUrl": "https://example.com/images/example-show-d/fanart.jpg"
       },
       {
         "coverType": "clearlogo",
         "url": "/MediaCover/2/clearlogo.png?lastWrite=638787394067772429",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/v4/series/73903/clearlogo/611b7b534815f.png"
+        "remoteUrl": "https://example.com/images/example-show-d/clearlogo.png"
       }
     ],
     "originalLanguage": {
@@ -451,9 +451,9 @@
     "firstAired": "1997-01-12T00:00:00Z",
     "lastAired": "2026-07-20T00:00:00Z",
     "seriesType": "standard",
-    "cleanTitle": "kinghill",
-    "imdbId": "tt0118375",
-    "titleSlug": "king-of-the-hill",
+    "cleanTitle": "exampleshowd",
+    "imdbId": "tt0000104",
+    "titleSlug": "example-show-d",
     "rootFolderPath": "/tv",
     "certification": "TV-PG",
     "genres": [
@@ -489,40 +489,40 @@
     "id": 2
   },
   {
-    "title": "Adolescence",
+    "title": "Example Show E",
     "alternateTitles": [
       {
-        "title": "Adolescence",
+        "title": "Example Show E Alternate 1",
         "seasonNumber": -1
       }
     ],
-    "sortTitle": "adolescence",
+    "sortTitle": "example show e",
     "status": "ended",
     "ended": true,
-    "overview": "When a 13-year-old is accused of the murder of a classmate, his family, therapist and the detective in charge are all left asking: what really happened?",
+    "overview": "Example overview for Example Show E.",
     "previousAiring": "2025-03-13T07:00:00Z",
-    "network": "Netflix",
+    "network": "Example Network",
     "airTime": "03:00",
     "images": [
       {
         "coverType": "banner",
         "url": "/MediaCover/3/banner.jpg?lastWrite=638787677971275610",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/v4/series/452467/banners/67bfe3a33b1e2.jpg"
+        "remoteUrl": "https://example.com/images/example-show-e/banner.jpg"
       },
       {
         "coverType": "poster",
         "url": "/MediaCover/3/poster.jpg?lastWrite=638789062835017063",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/v4/series/452467/posters/67d5949af3e89.jpg"
+        "remoteUrl": "https://example.com/images/example-show-e/poster.jpg"
       },
       {
         "coverType": "fanart",
         "url": "/MediaCover/3/fanart.jpg?lastWrite=638787677971755616",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/v4/series/452467/backgrounds/67d5d3ea54a66.jpg"
+        "remoteUrl": "https://example.com/images/example-show-e/fanart.jpg"
       },
       {
         "coverType": "clearlogo",
         "url": "/MediaCover/3/clearlogo.png?lastWrite=638787677971835617",
-        "remoteUrl": "https://artworks.thetvdb.com/banners/v4/series/452467/clearlogo/67d3e4ecb556f.png"
+        "remoteUrl": "https://example.com/images/example-show-e/clearlogo.png"
       }
     ],
     "originalLanguage": {
@@ -573,9 +573,9 @@
     "firstAired": "2025-03-13T00:00:00Z",
     "lastAired": "2025-03-13T00:00:00Z",
     "seriesType": "standard",
-    "cleanTitle": "adolescence",
-    "imdbId": "tt31806037",
-    "titleSlug": "adolescence",
+    "cleanTitle": "exampleshowe",
+    "imdbId": "tt0000105",
+    "titleSlug": "example-show-e",
     "rootFolderPath": "/tv",
     "certification": "12",
     "genres": [

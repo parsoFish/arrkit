@@ -213,7 +213,7 @@ func TestFilesDecodesFixture(t *testing.T) {
 	if err != nil || len(files) != 1 {
 		t.Fatalf("Files: %+v %v", files, err)
 	}
-	if files[0].Name != "A.Knight.S01E06.720p.exe" || files[0].Priority != 1 {
+	if files[0].Name != "Example.Show.S01E06.720p.exe" || files[0].Priority != 1 {
 		t.Errorf("unexpected file: %+v", files[0])
 	}
 	req := findRequest(seen, "/api/v2/torrents/files")

@@ -123,7 +123,7 @@ go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.15.0 run   # th
 scripts/scan-fixtures_test.sh && scripts/scan-fixtures.sh
 ```
 
-Fixture rule: anything added under `testdata/` must be scrubbed before you commit it. That means no real hostnames, addresses, emails, API keys, tokens, `plex.direct` hashes, torrent infohashes, release names or library paths. Use `example.com`, `10.0.0.x` or `192.0.2.x`, zero-padded hashes (`0000000000000000000000000000000000000001`), `Example.Show.S01E01.1080p-GROUP` and `/tv/Example Show/Season 01` instead. `scripts/scan-fixtures.sh` checks fixtures for infohashes, 32-hex keys, private addresses, emails, home paths, release names and library paths, and CI runs it on every pull request and on pushes to `main`.
+Fixture rule: anything added under `testdata/` must be scrubbed before you commit it. That means no real hostnames, addresses, emails, API keys, tokens, `plex.direct` hashes, torrent infohashes, release names, library paths, or show, movie and episode titles, watch history, user and device names, slugs. Use `example.com`, `10.0.0.x` or `192.0.2.x`, zero-padded hashes (`0000000000000000000000000000000000000001`), `Example.Show.S01E01.1080p-GROUP`, `/tv/Example Show/Season 01`, `Example Show A` and `Example Movie A` instead. `scripts/scan-fixtures.sh` checks fixtures for infohashes, 32-hex keys, private addresses, emails, home paths, release names and library paths, and CI runs it on every pull request and on pushes to `main`. It cannot recognise titles, watch history, user or device names or slugs, so review those by hand.
 
 ## Stability
 
