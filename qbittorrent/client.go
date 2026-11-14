@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/parsoFish/arrkit/httpx"
@@ -17,16 +18,17 @@ import (
 
 const apiBase = "/api/v2"
 
-// HTTPClient talks to a real qBittorrent WebUI.
-//
-// loggedIn is read and written from a single goroutine at a time in Phase 1
-// (one check run drives one client at a time); it is not safe for concurrent
-// use without external synchronisation.
+// HTTPClient talks to a real qBittorrent WebUI. It is safe for concurrent
+// use: logins are serialised, so concurrent callers share one session, and a
+// session that expires (403) is renewed once however many callers see it.
 type HTTPClient struct {
-	h        *httpx.Client
-	user     string
-	pass     string
+	h    *httpx.Client
+	user string
+	pass string
+
+	mu       sync.Mutex // serialises login; guards loggedIn and session
 	loggedIn bool
+	session  uint64 // bumped by every successful login
 }
 
 var _ Client = (*HTTPClient)(nil)
@@ -50,9 +52,9 @@ func New(baseURL, user, pass string, opts ...httpx.Option) (*HTTPClient, error) 
 	return &HTTPClient{h: h, user: user, pass: pass}, nil
 }
 
-// login authenticates and stores the SID cookie in the shared cookie jar. An
-// empty user and pass means the caller relies on qBittorrent's subnet
-// whitelist, so login is skipped entirely.
+// login authenticates and stores the SID cookie in the shared cookie jar.
+// The caller must hold c.mu. An empty user and pass means the caller relies
+// on qBittorrent's subnet whitelist, so login is skipped entirely.
 func (c *HTTPClient) login(ctx context.Context) error {
 	if c.user == "" && c.pass == "" {
 		return nil
@@ -66,21 +68,46 @@ func (c *HTTPClient) login(ctx context.Context) error {
 		return errors.New("qbittorrent login: invalid credentials")
 	}
 	c.loggedIn = true
+	c.session++
 	return nil
+}
+
+// ensureSession logs in unless a session already exists, and returns the
+// session generation the caller's request runs under.
+func (c *HTTPClient) ensureSession(ctx context.Context) (uint64, error) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if !c.loggedIn {
+		if err := c.login(ctx); err != nil {
+			return 0, err
+		}
+	}
+	return c.session, nil
+}
+
+// renewSession logs in again after a request made under session generation
+// `failed` got a 403. If another caller has already renewed that session, it
+// does nothing.
+func (c *HTTPClient) renewSession(ctx context.Context, failed uint64) error {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if c.loggedIn && c.session != failed {
+		return nil
+	}
+	c.loggedIn = false
+	return c.login(ctx)
 }
 
 // withAuth runs fn, logging in first if needed and once more after a 403
 // (the session expired between calls).
 func (c *HTTPClient) withAuth(ctx context.Context, fn func() error) error {
-	if !c.loggedIn {
-		if err := c.login(ctx); err != nil {
-			return err
-		}
+	session, err := c.ensureSession(ctx)
+	if err != nil {
+		return err
 	}
-	err := fn()
+	err = fn()
 	if httpx.IsStatus(err, http.StatusForbidden) {
-		c.loggedIn = false
-		if lerr := c.login(ctx); lerr != nil {
+		if lerr := c.renewSession(ctx, session); lerr != nil {
 			return lerr
 		}
 		return fn()
