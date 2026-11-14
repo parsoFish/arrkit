@@ -8,7 +8,7 @@
     {
       "episodeId": 3452,
       "seriesId": 48,
-      "sourceTitle": "The.Office.US.S01E06.1080p.BluRay.x265-RARBG",
+      "sourceTitle": "Example.Show.S01E06.1080p-GROUP",
       "languages": [
         {
           "id": 1,
@@ -32,15 +32,15 @@
       "customFormatScore": 0,
       "qualityCutoffNotMet": false,
       "date": "2026-09-12T14:21:54Z",
-      "downloadId": "505687740A6466441C1ACDA208790D8F5DEBB4C2",
+      "downloadId": "0000000000000000000000000000000000000004",
       "eventType": "downloadFolderImported",
       "data": {
         "fileId": "2145",
-        "droppedPath": "/downloads/tv/The.Office.US.S01.1080p.BluRay.x265-RARBG/The.Office.US.S01E06.1080p.BluRay.x265-RARBG.mp4",
-        "importedPath": "/tv/The Office (US)/Season 1/The Office (US) - S01E06 - Hot Girl Bluray-1080p.mp4",
+        "droppedPath": "/downloads/tv/Example.Show.S01.1080p-GROUP/Example.Show.S01E06.1080p-GROUP.mp4",
+        "importedPath": "/tv/Example Show/Season 01/Example Show - S01E06 - Episode Six Bluray-1080p.mp4",
         "downloadClient": "qBittorrent",
         "downloadClientName": "qBittorrent",
-        "releaseGroup": "RARBG",
+        "releaseGroup": "GROUP",
         "customFormatScore": "0",
         "size": "375898849",
         "indexerFlags": "Freeleech",
@@ -51,7 +51,7 @@
     {
       "episodeId": 3451,
       "seriesId": 48,
-      "sourceTitle": "The.Office.US.S01E05.1080p.BluRay.x265-RARBG",
+      "sourceTitle": "Example.Show.S01E05.1080p-GROUP",
       "languages": [
         {
           "id": 1,
@@ -75,15 +75,15 @@
       "customFormatScore": 0,
       "qualityCutoffNotMet": false,
       "date": "2026-09-12T14:21:36Z",
-      "downloadId": "505687740A6466441C1ACDA208790D8F5DEBB4C2",
+      "downloadId": "0000000000000000000000000000000000000004",
       "eventType": "downloadFolderImported",
       "data": {
         "fileId": "2144",
-        "droppedPath": "/downloads/tv/The.Office.US.S01.1080p.BluRay.x265-RARBG/The.Office.US.S01E05.1080p.BluRay.x265-RARBG.mp4",
-        "importedPath": "/tv/The Office (US)/Season 1/The Office (US) - S01E05 - Basketball Bluray-1080p.mp4",
+        "droppedPath": "/downloads/tv/Example.Show.S01.1080p-GROUP/Example.Show.S01E05.1080p-GROUP.mp4",
+        "importedPath": "/tv/Example Show/Season 01/Example Show - S01E05 - Episode Five Bluray-1080p.mp4",
         "downloadClient": "qBittorrent",
         "downloadClientName": "qBittorrent",
-        "releaseGroup": "RARBG",
+        "releaseGroup": "GROUP",
         "customFormatScore": "0",
         "size": "375266744",
         "indexerFlags": "Freeleech",
@@ -94,7 +94,7 @@
     {
       "episodeId": 3450,
       "seriesId": 48,
-      "sourceTitle": "The.Office.US.S01E04.1080p.BluRay.x265-RARBG",
+      "sourceTitle": "Example.Show.S01E04.1080p-GROUP",
       "languages": [
         {
           "id": 1,
@@ -118,15 +118,15 @@
       "customFormatScore": 0,
       "qualityCutoffNotMet": false,
       "date": "2026-09-12T14:21:23Z",
-      "downloadId": "505687740A6466441C1ACDA208790D8F5DEBB4C2",
+      "downloadId": "0000000000000000000000000000000000000004",
       "eventType": "downloadFolderImported",
       "data": {
         "fileId": "2143",
-        "droppedPath": "/downloads/tv/The.Office.US.S01.1080p.BluRay.x265-RARBG/The.Office.US.S01E04.1080p.BluRay.x265-RARBG.mp4",
-        "importedPath": "/tv/The Office (US)/Season 1/The Office (US) - S01E04 - The Alliance Bluray-1080p.mp4",
+        "droppedPath": "/downloads/tv/Example.Show.S01.1080p-GROUP/Example.Show.S01E04.1080p-GROUP.mp4",
+        "importedPath": "/tv/Example Show/Season 01/Example Show - S01E04 - Episode Four Bluray-1080p.mp4",
         "downloadClient": "qBittorrent",
         "downloadClientName": "qBittorrent",
-        "releaseGroup": "RARBG",
+        "releaseGroup": "GROUP",
         "customFormatScore": "0",
         "size": "374089277",
         "indexerFlags": "Freeleech",

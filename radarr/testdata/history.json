@@ -7,7 +7,7 @@
   "records": [
     {
       "movieId": 71,
-      "sourceTitle": "/movies/American Psycho (2000)/American Psycho (2000) Bluray-2160p.mkv",
+      "sourceTitle": "/movies/Example Movie 5 (2000)/Example Movie 5 (2000) Bluray-2160p.mkv",
       "languages": [
         {
           "id": 1,
@@ -35,7 +35,7 @@
       "eventType": "movieFileDeleted",
       "data": {
         "reason": "MissingFromDisk",
-        "releaseGroup": "YTS.MX",
+        "releaseGroup": "GROUP",
         "size": "4988462205",
         "indexerFlags": "G_Freeleech"
       },
@@ -43,7 +43,7 @@
     },
     {
       "movieId": 54,
-      "sourceTitle": "/movies/Get Out (2017)/Get Out (2017) WEBDL-1080p.mkv",
+      "sourceTitle": "/movies/Example Movie 6 (2017)/Example Movie 6 (2017) WEBDL-1080p.mkv",
       "languages": [
         {
           "id": 5,
@@ -75,7 +75,7 @@
       "eventType": "movieFileDeleted",
       "data": {
         "reason": "MissingFromDisk",
-        "releaseGroup": "MIRCrew",
+        "releaseGroup": "GROUP",
         "size": "2660314224",
         "indexerFlags": "G_Freeleech"
       },
@@ -83,7 +83,7 @@
     },
     {
       "movieId": 77,
-      "sourceTitle": "/movies/Peaky Blinders - The Immortal Man (2026)/Peaky Blinders - The Immortal Man (2026) WEBDL-1080p.mkv",
+      "sourceTitle": "/movies/Example Movie 7 (2026)/Example Movie 7 (2026) WEBDL-1080p.mkv",
       "languages": [
         {
           "id": 5,
@@ -115,7 +115,7 @@
       "eventType": "movieFileDeleted",
       "data": {
         "reason": "MissingFromDisk",
-        "releaseGroup": "MIRCrew",
+        "releaseGroup": "GROUP",
         "size": "4815363047",
         "indexerFlags": "G_Freeleech"
       },

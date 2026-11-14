@@ -42,7 +42,7 @@ go test ./... -race -cover
 golangci-lint run
 ```
 
-Fixture rule: anything added under `testdata/` must be scrubbed before you commit it. That means no real hostnames, addresses, emails, API keys, tokens or `plex.direct` hashes. Use `example.com`, `10.0.0.x` or `192.0.2.x` and obviously fake IDs instead.
+Fixture rule: anything added under `testdata/` must be scrubbed before you commit it. That means no real hostnames, addresses, emails, API keys, tokens, `plex.direct` hashes, torrent infohashes, release names or library paths. Use `example.com`, `10.0.0.x` or `192.0.2.x`, zero-padded hashes (`0000000000000000000000000000000000000001`), `Example.Show.S01E01.1080p-GROUP` and `/tv/Example Show/Season 01` instead. `scripts/scan-fixtures.sh` checks fixtures for infohashes, 32-hex keys, private addresses, emails, home paths, release names and library paths.
 
 ## Stability
 

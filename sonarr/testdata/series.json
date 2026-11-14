@@ -115,7 +115,7 @@
       }
     ],
     "year": 2008,
-    "path": "/tv/Breaking Bad",
+    "path": "/tv/Example Show 1",
     "qualityProfileId": 1,
     "seasonFolder": true,
     "monitored": false,
@@ -437,7 +437,7 @@
       }
     ],
     "year": 1997,
-    "path": "/tv/King of the Hill",
+    "path": "/tv/Example Show 2",
     "qualityProfileId": 1,
     "seasonFolder": true,
     "monitored": true,
@@ -559,7 +559,7 @@
       }
     ],
     "year": 2025,
-    "path": "/tv/Adolescence",
+    "path": "/tv/Example Show 3",
     "qualityProfileId": 4,
     "seasonFolder": true,
     "monitored": true,
